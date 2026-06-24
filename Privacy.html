@@ -4,15 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="manifest" href="manifest.json" />
-    <title>WhatsApp Bot – TECH TUTORIALS</title>
+    <title>Privacy Policy – TECH TUTORIALS</title>
     <style>
-        /* Same as index.css – include all styles (we'll abbreviate here but you should copy the full style block from index.html) */
+        /* Same as index – include full styles (we'll just copy the basics) */
         :root { --bg: #0b0e14; --surface: #141c26; --text: #e8edf5; --muted: #8899aa; --border: #1f2a36; --accent: #00c9ff; }
         body.light { --bg: #f5f7fa; --surface: #ffffff; --text: #1a1f2b; --muted: #5a6a7a; --border: #d1d9e6; }
         * { margin:0; padding:0; box-sizing:border-box; transition: background 0.3s, color 0.3s, border 0.3s; }
         body { font-family:'Segoe UI',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; display:flex; flex-direction:column; }
         a { text-decoration:none; color:inherit; }
-        .container { max-width:1100px; margin:0 auto; padding:0 20px; flex:1; display:flex; flex-direction:column; }
+        .container { max-width:800px; margin:0 auto; padding:0 20px; flex:1; display:flex; flex-direction:column; }
         header { padding:20px 0; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
         .logo h1 { font-size:26px; font-weight:700; background:linear-gradient(135deg,#00c9ff,#92fe9d); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
         .logo span { font-size:13px; color:var(--muted); display:block; }
@@ -21,16 +21,14 @@
         .dashboard-link { background:var(--surface); border:1px solid var(--border); padding:6px 14px; border-radius:8px; color:var(--accent); font-size:14px; }
         .dashboard-link:hover { border-color:var(--accent); }
         .back-link { color:var(--accent); padding:8px 16px; border:1px solid var(--border); border-radius:8px; }
-        .breadcrumbs { font-size:14px; color:var(--muted); padding:10px 0; }
-        .breadcrumbs span { color:var(--text); }
-        .hero { text-align:center; padding:40px 0 20px; }
-        .hero h2 { font-size:32px; font-weight:600; }
-        .coming-soon-box { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:40px; text-align:center; max-width:600px; margin:0 auto 30px; }
-        .coming-soon-box .icon { font-size:64px; }
+        .content { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:30px; margin:20px 0; }
+        .content h2 { font-size:24px; margin-bottom:16px; }
+        .content h3 { font-size:18px; margin:16px 0 8px; }
+        .content p { color:var(--muted); line-height:1.6; margin-bottom:12px; }
         footer { border-top:1px solid var(--border); padding:20px 0; margin-top:20px; text-align:center; color:var(--muted); font-size:14px; }
         footer a { color:var(--accent); margin:0 8px; }
         @media (max-width:600px){ header{flex-direction:column;align-items:flex-start;} }
-        /* Overlay styles (copy from index) */
+        /* Overlay styles (optional – but we keep for consistency) */
         .overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; z-index:9999; opacity:0; pointer-events:none; transition: opacity 0.4s ease; }
         .overlay.active { opacity:1; pointer-events:auto; }
         .overlay-box { background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:40px 30px; max-width:420px; width:90%; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.6); transform:scale(0.95); transition: transform 0.3s ease; }
@@ -44,7 +42,7 @@
     </style>
 </head>
 <body>
-    <!-- LOGIN OVERLAY -->
+    <!-- LOGIN OVERLAY (optional, but we include it for consistency) -->
     <div id="loginOverlay" class="overlay active">
         <div class="overlay-box">
             <h2>🔐 Access Restricted</h2>
@@ -65,10 +63,33 @@
                 <a href="index.html" class="back-link">← Home</a>
             </div>
         </header>
-        <div class="breadcrumbs">Home &gt; <span>WhatsApp Bot</span></div>
         <main>
-            <div class="hero"><h2>🤖 WhatsApp Bot</h2><p>Build your own bot from scratch</p></div>
-            <div class="coming-soon-box"><div class="icon">🚧</div><h3>Page Under Construction</h3><p>Comprehensive guide coming soon!</p></div>
+            <div class="content">
+                <h2>Privacy Policy</h2>
+                <p><strong>Last updated:</strong> June 2026</p>
+                <p>At TECH TUTORIALS, we take your privacy seriously. This policy describes how we collect, use, and protect your personal information.</p>
+
+                <h3>1. Information We Collect</h3>
+                <p>We collect the following information when you sign up: username, email address, and password (stored locally in your browser). We also use MailerLite to manage our email list; your email is sent to MailerLite when you sign up.</p>
+
+                <h3>2. How We Use Your Information</h3>
+                <p>Your email is used solely for sending newsletters and updates about TECH TUTORIALS. We do not sell, rent, or share your data with third parties except as required by law.</p>
+
+                <h3>3. Data Storage</h3>
+                <p>All user data (username, password, email) is stored locally in your browser's localStorage. We do not maintain a remote database. Your password is stored in plain text (for demo purposes) – we recommend using a unique password.</p>
+
+                <h3>4. Cookies</h3>
+                <p>We do not use cookies. However, our analytics (if any) may use local storage for theme preferences and watched progress.</p>
+
+                <h3>5. Third-Party Services</h3>
+                <p>We use MailerLite to send emails. Their privacy policy governs how they handle your email. We also embed YouTube videos – YouTube may collect data as per their policy.</p>
+
+                <h3>6. Your Rights</h3>
+                <p>You may unsubscribe from our newsletter at any time via the link in our emails or by using the "Unsubscribe" button on your dashboard.</p>
+
+                <h3>7. Contact</h3>
+                <p>If you have any questions about this privacy policy, please contact us at <a href="mailto:privacy@techtutorials.example.com">privacy@techtutorials.example.com</a>.</p>
+            </div>
         </main>
         <footer>
             &copy; 2025-2026 created by <strong>SYMOH TECHN</strong> &nbsp;|&nbsp; All rights reserved
@@ -78,7 +99,7 @@
     </div>
 
     <script>
-        // Theme and overlay logic (same as index)
+        // Theme and overlay logic (same as before)
         const themeToggle = document.getElementById('themeToggle');
         if (localStorage.getItem('theme') === 'light') document.body.classList.add('light');
         themeToggle.textContent = document.body.classList.contains('light') ? '☀️ Light' : '🌙 Dark';
@@ -95,7 +116,7 @@
             loginOverlay.classList.add('active');
         }
         document.getElementById('goToLoginBtn').addEventListener('click', () => {
-            localStorage.setItem('loginRedirect', 'bot.html');
+            localStorage.setItem('loginRedirect', 'privacy.html');
             window.location.href = 'login.html';
         });
 

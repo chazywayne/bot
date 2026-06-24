@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="manifest" href="manifest.json" />
+    <title>Dashboard – TECH TUTORIALS</title>
+    <style>
+        /* ---------- CSS Variables & Reset ---------- */
+        :root {
+            --bg: #0b0e14;
+            --surface: #141c26;
+            --text: #e8edf5;
+            --muted: #8899aa;
+            --border: #1f2a36;
+            --accent: #00c9ff;
+            --shadow: rgba(0, 0, 0, 0.4);
+        }
+        body.light {
+            --bg: #f5f7fa;
+            --surface: #ffffff;
+            --text: #1a1f2b;
+            --muted: #5a6a7a;
+            --border: #d1d9e6;
+            --shadow: rgba(0, 0, 0, 0.1);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background 0.3s, color 0.3s, border 0.3s;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ---------- Header ---------- */
+        header {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .logo h1 {
+            font-size: 26px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #00c9ff, #92fe9d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .logo span {
+            font-size: 13px;
+            color: var(--muted);
+            display: block;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .theme-toggle {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 6px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .dashboard-link {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 8px;
+            color: var(--accent);
+            font-size: 14px;
+        }
+        .dashboard-link:hover {
+            border-color: var(--accent);
+        }
+        .back-link {
+            color: var(--accent);
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+        .back-link:hover {
+            background: var(--surface);
+        }
+
+        /* ---------- Dashboard Card ---------- */
+        .dashboard-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            margin: 20px 0;
+        }
+        .dashboard-card h2 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        .info-label {
+            color: var(--muted);
+        }
+
+        /* ---------- Buttons ---------- */
+        .btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 8px;
+            background: var(--border);
+            color: var(--text);
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .btn:hover {
+            transform: scale(1.02);
+        }
+        .btn.danger {
+            background: #3a1a1a;
+            color: #ff6666;
+        }
+        .btn.danger:hover {
+            background: #4a2a2a;
+        }
+        .btn.primary {
+            background: linear-gradient(135deg, #00c9ff, #92fe9d);
+            color: #0b0e14;
+        }
+        .btn.primary:hover {
+            box-shadow: 0 4px 20px rgba(0, 201, 255, 0.3);
+        }
+
+        /* ---------- Footer ---------- */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 20px 0;
+            margin-top: 20px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 14px;
+        }
+        footer a {
+            color: var(--accent);
+            margin: 0 8px;
+        }
+
+        /* ---------- Overlay (Login Gate) ---------- */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+        }
+        .overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .overlay-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px 30px;
+            max-width: 420px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        .overlay.active .overlay-box {
+            transform: scale(1);
+        }
+        .overlay-box h2 {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        .overlay-box p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .overlay-box .btn-primary {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #00c9ff, #92fe9d);
+            color: #0b0e14;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .overlay-box .btn-primary:hover {
+            transform: scale(1.02);
+        }
+        .overlay-box .small {
+            font-size: 12px;
+            color: var(--muted);
+            margin-top: 12px;
+        }
+        .overlay-box a {
+            color: var(--accent);
+        }
+
+        /* ---------- Responsive ---------- */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .dashboard-card {
+                padding: 20px;
+            }
+            .info-row {
+                flex-direction: column;
+                gap: 4px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- LOGIN OVERLAY (if not logged in, it shows) -->
+    <div id="loginOverlay" class="overlay active">
+        <div class="overlay-box">
+            <h2>🔐 Access Restricted</h2>
+            <p>You must be logged in to view TECH TUTORIALS content.</p>
+            <button id="goToLoginBtn" class="btn-primary">Go to Login</button>
+            <p style="margin-top:12px; font-size:13px; color:var(--muted);">
+                Don't have an account? <a href="signup.html">Sign up</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <div class="logo">
+                <h1>⚡ TECH TUTORIALS</h1>
+                <span>Learn • Build • Master</span>
+            </div>
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle">🌙 Dark</button>
+                <a href="index.html" class="back-link">← Home</a>
+            </div>
+        </header>
+
+        <main>
+            <div class="dashboard-card">
+                <h2>📊 Your Dashboard</h2>
+                <div class="info-row">
+                    <span class="info-label">Username</span>
+                    <span id="usernameDisplay">Not logged in</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Email</span>
+                    <span id="userEmailDisplay">Not subscribed</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Subscription status</span>
+                    <span id="subStatus">❌ Not subscribed</span>
+                </div>
+                <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap;">
+                    <button class="btn danger" id="logoutBtn">🚪 Logout</button>
+                    <button class="btn danger" id="clearDataBtn">🗑️ Clear all data (reset)</button>
+                </div>
+                <p style="margin-top:16px; font-size:13px; color:var(--muted);">
+                    * Clearing data will remove all local data (users, preferences, watched progress).
+                </p>
+            </div>
+        </main>
+
+        <footer>
+            &copy; 2025-2026 created by <strong>SYMOH TECHN</strong> &nbsp;|&nbsp; All rights reserved
+            <br />
+            <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a>
+        </footer>
+    </div>
+
+    <script>
+        // ---------- THEME ----------
+        const themeToggle = document.getElementById('themeToggle');
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light');
+        }
+        themeToggle.textContent = document.body.classList.contains('light') ? '☀️ Light' : '🌙 Dark';
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light');
+            const isLight = document.body.classList.contains('light');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            themeToggle.textContent = isLight ? '☀️ Light' : '🌙 Dark';
+        });
+
+        // ---------- LOGIN OVERLAY ----------
+        const loginOverlay = document.getElementById('loginOverlay');
+        if (localStorage.getItem('loggedInUser')) {
+            loginOverlay.classList.remove('active');
+        } else {
+            loginOverlay.classList.add('active');
+        }
+        document.getElementById('goToLoginBtn').addEventListener('click', () => {
+            localStorage.setItem('loginRedirect', 'dashboard.html');
+            window.location.href = 'login.html';
+        });
+
+        // ---------- LOAD USER DATA ----------
+        const username = localStorage.getItem('loggedInUser') || 'Not logged in';
+        const email = localStorage.getItem('userEmail') || 'Not subscribed';
+        document.getElementById('usernameDisplay').textContent = username;
+        document.getElementById('userEmailDisplay').textContent = email;
+        document.getElementById('subStatus').textContent = email !== 'Not subscribed' ? '✅ Subscribed' : '❌ Not subscribed';
+
+        // ---------- LOGOUT ----------
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            localStorage.removeItem('loggedInUser');
+            localStorage.removeItem('userEmail');
+            // Optional: keep theme and watched progress
+            window.location.href = 'index.html';
+        });
+
+        // ---------- CLEAR ALL DATA ----------
+        document.getElementById('clearDataBtn').addEventListener('click', () => {
+            if (confirm('This will remove ALL local data (users, preferences, watched progress). Continue?')) {
+                localStorage.clear();
+                window.location.href = 'index.html';
+            }
+        });
+
+        // ---------- SERVICE WORKER ----------
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('service-worker.js');
+        }
+    </script>
+</body>
+</html>

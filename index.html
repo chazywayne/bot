@@ -18,6 +18,8 @@
         .logo span { font-size:13px; color:var(--muted); display:block; }
         .header-actions { display:flex; align-items:center; gap:12px; }
         .theme-toggle { background:var(--surface); border:1px solid var(--border); color:var(--text); padding:6px 14px; border-radius:8px; cursor:pointer; font-size:14px; }
+        .dashboard-link { background:var(--surface); border:1px solid var(--border); padding:6px 14px; border-radius:8px; color:var(--accent); font-size:14px; }
+        .dashboard-link:hover { border-color:var(--accent); }
         .hero { text-align:center; padding:30px 0 20px; }
         .hero h2 { font-size:32px; font-weight:600; }
         .hero p { color:var(--muted); font-size:18px; }
@@ -38,16 +40,56 @@
         .newsletter input { padding:10px 16px; border-radius:8px; border:1px solid var(--border); background:var(--bg); color:var(--text); flex:1; min-width:200px; max-width:300px; }
         .newsletter button { padding:10px 24px; border:none; border-radius:8px; background:linear-gradient(135deg,#00c9ff,#92fe9d); color:#0b0e14; font-weight:600; cursor:pointer; }
         footer { border-top:1px solid var(--border); padding:20px 0; margin-top:20px; text-align:center; color:var(--muted); font-size:14px; }
+        footer a { color:var(--accent); margin:0 8px; }
         @media (max-width:600px){ .options-grid{grid-template-columns:1fr;} header{flex-direction:column;align-items:flex-start;} }
-        .hidden { display:none !important; }
+
+        /* --- OVERLAY STYLES --- */
+        .overlay {
+            position: fixed; top:0; left:0; width:100%; height:100%;
+            background:rgba(0,0,0,0.85); backdrop-filter:blur(4px);
+            display:flex; align-items:center; justify-content:center;
+            z-index:9999; opacity:0; pointer-events:none;
+            transition: opacity 0.4s ease;
+        }
+        .overlay.active { opacity:1; pointer-events:auto; }
+        .overlay-box {
+            background:var(--surface); border:1px solid var(--border);
+            border-radius:20px; padding:40px 30px; max-width:420px; width:90%;
+            text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.6);
+            transform:scale(0.95); transition: transform 0.3s ease;
+        }
+        .overlay.active .overlay-box { transform:scale(1); }
+        .overlay-box h2 { font-size:24px; margin-bottom:8px; }
+        .overlay-box p { color:var(--muted); font-size:14px; margin-bottom:20px; }
+        .overlay-box .btn-primary {
+            padding:12px 30px; border:none; border-radius:10px;
+            background:linear-gradient(135deg,#00c9ff,#92fe9d); color:#0b0e14;
+            font-weight:600; font-size:16px; cursor:pointer; transition:0.2s;
+        }
+        .overlay-box .btn-primary:hover { transform:scale(1.02); }
+        .overlay-box .small { font-size:12px; color:var(--muted); margin-top:12px; }
+        .overlay-box a { color:var(--accent); }
     </style>
 </head>
 <body>
+    <!-- LOGIN OVERLAY -->
+    <div id="loginOverlay" class="overlay active">
+        <div class="overlay-box">
+            <h2>🔐 Access Restricted</h2>
+            <p>You must be logged in to view TECH TUTORIALS content.</p>
+            <button id="goToLoginBtn" class="btn-primary">Go to Login</button>
+            <p style="margin-top:12px; font-size:13px; color:var(--muted);">
+                Don't have an account? <a href="signup.html">Sign up</a>
+            </p>
+        </div>
+    </div>
+
     <div class="container">
         <header>
             <div class="logo"><h1>⚡ TECH TUTORIALS</h1><span>Learn • Build • Master</span></div>
             <div class="header-actions">
                 <button class="theme-toggle" id="themeToggle">🌙 Dark</button>
+                <a href="dashboard.html" class="dashboard-link">👤 My Account</a>
             </div>
         </header>
         <main>
@@ -72,8 +114,13 @@
                 <p style="margin-top:12px; font-size:12px; color:var(--muted);">(Newsletter mockup – connect later)</p>
             </div>
         </main>
-        <footer>&copy; 2025-2026 created by <strong>SYMOH TECHN</strong> &nbsp;|&nbsp; All rights reserved</footer>
+        <footer>
+            &copy; 2025-2026 created by <strong>SYMOH TECHN</strong> &nbsp;|&nbsp; All rights reserved
+            <br />
+            <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a>
+        </footer>
     </div>
+
     <script>
         // Theme
         const themeToggle = document.getElementById('themeToggle');
@@ -93,6 +140,19 @@
                 const text = card.innerText.toLowerCase();
                 card.style.display = text.includes(q) ? '' : 'none';
             });
+        });
+
+        // Login overlay
+        const loginOverlay = document.getElementById('loginOverlay');
+        if (localStorage.getItem('loggedInUser')) {
+            loginOverlay.classList.remove('active');
+        } else {
+            loginOverlay.classList.add('active');
+        }
+
+        document.getElementById('goToLoginBtn').addEventListener('click', () => {
+            localStorage.setItem('loginRedirect', window.location.pathname.split('/').pop() || 'index.html');
+            window.location.href = 'login.html';
         });
 
         // Service Worker

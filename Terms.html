@@ -4,15 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="manifest" href="manifest.json" />
-    <title>WhatsApp Bot – TECH TUTORIALS</title>
+    <title>Terms of Use – TECH TUTORIALS</title>
     <style>
-        /* Same as index.css – include all styles (we'll abbreviate here but you should copy the full style block from index.html) */
+        /* Same as privacy.html – copy the styles */
         :root { --bg: #0b0e14; --surface: #141c26; --text: #e8edf5; --muted: #8899aa; --border: #1f2a36; --accent: #00c9ff; }
         body.light { --bg: #f5f7fa; --surface: #ffffff; --text: #1a1f2b; --muted: #5a6a7a; --border: #d1d9e6; }
         * { margin:0; padding:0; box-sizing:border-box; transition: background 0.3s, color 0.3s, border 0.3s; }
         body { font-family:'Segoe UI',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; display:flex; flex-direction:column; }
         a { text-decoration:none; color:inherit; }
-        .container { max-width:1100px; margin:0 auto; padding:0 20px; flex:1; display:flex; flex-direction:column; }
+        .container { max-width:800px; margin:0 auto; padding:0 20px; flex:1; display:flex; flex-direction:column; }
         header { padding:20px 0; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
         .logo h1 { font-size:26px; font-weight:700; background:linear-gradient(135deg,#00c9ff,#92fe9d); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
         .logo span { font-size:13px; color:var(--muted); display:block; }
@@ -21,16 +21,14 @@
         .dashboard-link { background:var(--surface); border:1px solid var(--border); padding:6px 14px; border-radius:8px; color:var(--accent); font-size:14px; }
         .dashboard-link:hover { border-color:var(--accent); }
         .back-link { color:var(--accent); padding:8px 16px; border:1px solid var(--border); border-radius:8px; }
-        .breadcrumbs { font-size:14px; color:var(--muted); padding:10px 0; }
-        .breadcrumbs span { color:var(--text); }
-        .hero { text-align:center; padding:40px 0 20px; }
-        .hero h2 { font-size:32px; font-weight:600; }
-        .coming-soon-box { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:40px; text-align:center; max-width:600px; margin:0 auto 30px; }
-        .coming-soon-box .icon { font-size:64px; }
+        .content { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:30px; margin:20px 0; }
+        .content h2 { font-size:24px; margin-bottom:16px; }
+        .content h3 { font-size:18px; margin:16px 0 8px; }
+        .content p { color:var(--muted); line-height:1.6; margin-bottom:12px; }
+        .content ul { color:var(--muted); margin-left:20px; margin-bottom:12px; }
         footer { border-top:1px solid var(--border); padding:20px 0; margin-top:20px; text-align:center; color:var(--muted); font-size:14px; }
         footer a { color:var(--accent); margin:0 8px; }
         @media (max-width:600px){ header{flex-direction:column;align-items:flex-start;} }
-        /* Overlay styles (copy from index) */
         .overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); backdrop-filter:blur(4px); display:flex; align-items:center; justify-content:center; z-index:9999; opacity:0; pointer-events:none; transition: opacity 0.4s ease; }
         .overlay.active { opacity:1; pointer-events:auto; }
         .overlay-box { background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:40px 30px; max-width:420px; width:90%; text-align:center; box-shadow:0 20px 60px rgba(0,0,0,0.6); transform:scale(0.95); transition: transform 0.3s ease; }
@@ -65,10 +63,36 @@
                 <a href="index.html" class="back-link">← Home</a>
             </div>
         </header>
-        <div class="breadcrumbs">Home &gt; <span>WhatsApp Bot</span></div>
         <main>
-            <div class="hero"><h2>🤖 WhatsApp Bot</h2><p>Build your own bot from scratch</p></div>
-            <div class="coming-soon-box"><div class="icon">🚧</div><h3>Page Under Construction</h3><p>Comprehensive guide coming soon!</p></div>
+            <div class="content">
+                <h2>Terms of Use</h2>
+                <p><strong>Last updated:</strong> June 2026</p>
+                <p>By using TECH TUTORIALS, you agree to the following terms and conditions. Please read them carefully.</p>
+
+                <h3>1. Acceptance of Terms</h3>
+                <p>By accessing and using this website, you accept and agree to be bound by these Terms of Use and our Privacy Policy.</p>
+
+                <h3>2. User Accounts</h3>
+                <p>You are responsible for maintaining the confidentiality of your login credentials. You are fully responsible for all activities that occur under your account.</p>
+
+                <h3>3. Content Use</h3>
+                <p>All content provided on this website is for informational and educational purposes only. You may not reproduce, distribute, or commercially exploit any content without prior written permission.</p>
+
+                <h3>4. No Warranty</h3>
+                <p>The tutorials and materials are provided "as is" without any warranties. We do not guarantee that the information is accurate, complete, or up‑to‑date.</p>
+
+                <h3>5. Limitation of Liability</h3>
+                <p>In no event shall TECH TUTORIALS or its creators be liable for any damages arising from the use of this website or its content.</p>
+
+                <h3>6. External Links</h3>
+                <p>Our website may contain links to third‑party sites. We are not responsible for the content or practices of those sites.</p>
+
+                <h3>7. Changes to Terms</h3>
+                <p>We reserve the right to update these Terms of Use at any time. Changes will be posted on this page.</p>
+
+                <h3>8. Contact</h3>
+                <p>If you have any questions about these terms, please contact us at <a href="mailto:terms@techtutorials.example.com">terms@techtutorials.example.com</a>.</p>
+            </div>
         </main>
         <footer>
             &copy; 2025-2026 created by <strong>SYMOH TECHN</strong> &nbsp;|&nbsp; All rights reserved
@@ -78,7 +102,7 @@
     </div>
 
     <script>
-        // Theme and overlay logic (same as index)
+        // Theme and overlay logic
         const themeToggle = document.getElementById('themeToggle');
         if (localStorage.getItem('theme') === 'light') document.body.classList.add('light');
         themeToggle.textContent = document.body.classList.contains('light') ? '☀️ Light' : '🌙 Dark';
@@ -95,7 +119,7 @@
             loginOverlay.classList.add('active');
         }
         document.getElementById('goToLoginBtn').addEventListener('click', () => {
-            localStorage.setItem('loginRedirect', 'bot.html');
+            localStorage.setItem('loginRedirect', 'terms.html');
             window.location.href = 'login.html';
         });
 

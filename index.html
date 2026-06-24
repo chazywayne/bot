@@ -79,7 +79,7 @@
             <p>You must be logged in to view TECH TUTORIALS content.</p>
             <button id="goToLoginBtn" class="btn-primary">Go to Login</button>
             <p style="margin-top:12px; font-size:13px; color:var(--muted);">
-                Don't have an account? <a href="signup.html">Sign up</a>
+                Don't have an account? <a href="https://bot-three-eta-43.vercel.app/signup.html">Sign up</a>
             </p>
         </div>
     </div>
@@ -89,7 +89,7 @@
             <div class="logo"><h1>⚡ TECH TUTORIALS</h1><span>Learn • Build • Master</span></div>
             <div class="header-actions">
                 <button class="theme-toggle" id="themeToggle">🌙 Dark</button>
-                <a href="dashboard.html" class="dashboard-link">👤 My Account</a>
+                <a href="https://bot-three-eta-43.vercel.app/dashboard.html" class="dashboard-link">👤 My Account</a>
             </div>
         </header>
         <main>
@@ -152,7 +152,7 @@
 
         document.getElementById('goToLoginBtn').addEventListener('click', () => {
             localStorage.setItem('loginRedirect', window.location.pathname.split('/').pop() || 'index.html');
-            window.location.href = 'login.html';
+            window.location.href = 'https://bot-three-eta-43.vercel.app/login.html';
         });
 
         // Service Worker

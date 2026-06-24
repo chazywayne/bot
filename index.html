@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="manifest" href="manifest.json" />
+    <title>TECH TUTORIALS – Learn, Build, Master</title>
+    <style>
+        :root { --bg: #0b0e14; --surface: #141c26; --text: #e8edf5; --muted: #8899aa; --border: #1f2a36; --accent: #00c9ff; --shadow: rgba(0,0,0,0.4); }
+        body.light { --bg: #f5f7fa; --surface: #ffffff; --text: #1a1f2b; --muted: #5a6a7a; --border: #d1d9e6; --shadow: rgba(0,0,0,0.1); }
+        * { margin:0; padding:0; box-sizing:border-box; transition: background 0.3s, color 0.3s, border 0.3s; }
+        body { font-family:'Segoe UI',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; display:flex; flex-direction:column; }
+        a { text-decoration:none; color:inherit; }
+        .container { max-width:1100px; margin:0 auto; padding:0 20px; flex:1; display:flex; flex-direction:column; }
+        header { padding:20px 0; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+        .logo h1 { font-size:26px; font-weight:700; background:linear-gradient(135deg,#00c9ff,#92fe9d); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .logo span { font-size:13px; color:var(--muted); display:block; }
+        .header-actions { display:flex; align-items:center; gap:12px; }
+        .theme-toggle { background:var(--surface); border:1px solid var(--border); color:var(--text); padding:6px 14px; border-radius:8px; cursor:pointer; font-size:14px; }
+        .hero { text-align:center; padding:30px 0 20px; }
+        .hero h2 { font-size:32px; font-weight:600; }
+        .hero p { color:var(--muted); font-size:18px; }
+        .search-box { max-width:500px; margin:15px auto 0; }
+        .search-box input { width:100%; padding:12px 18px; border-radius:10px; border:1px solid var(--border); background:var(--surface); color:var(--text); font-size:16px; outline:none; }
+        .search-box input:focus { border-color:var(--accent); }
+        .options-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px; padding:20px 0 30px; }
+        .option-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:24px 16px; text-align:center; transition:0.3s ease; }
+        .option-card:hover { transform:translateY(-5px); border-color:var(--accent); box-shadow:0 8px 30px var(--shadow); }
+        .option-card .icon { font-size:40px; margin-bottom:10px; }
+        .option-card h3 { font-size:18px; font-weight:600; }
+        .option-card p { color:var(--muted); font-size:13px; }
+        .option-card .badge { display:inline-block; margin-top:8px; padding:3px 12px; border-radius:20px; font-size:11px; background:var(--border); color:var(--muted); }
+        .option-card .badge.coming { background:#2a1f1f; color:#ffaa66; }
+        .option-card a { display:block; width:100%; height:100%; }
+        .community { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:24px; text-align:center; margin:10px 0 30px; }
+        .newsletter { margin-top:16px; display:flex; justify-content:center; gap:10px; flex-wrap:wrap; }
+        .newsletter input { padding:10px 16px; border-radius:8px; border:1px solid var(--border); background:var(--bg); color:var(--text); flex:1; min-width:200px; max-width:300px; }
+        .newsletter button { padding:10px 24px; border:none; border-radius:8px; background:linear-gradient(135deg,#00c9ff,#92fe9d); color:#0b0e14; font-weight:600; cursor:pointer; }
+        footer { border-top:1px solid var(--border); padding:20px 0; margin-top:20px; text-align:center; color:var(--muted); font-size:14px; }
+        @media (max-width:600px){ .options-grid{grid-template-columns:1fr;} header{flex-direction:column;align-items:flex-start;} }
+        .hidden { display:none !important; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo"><h1>⚡ TECH TUTORIALS</h1><span>Learn • Build • Master</span></div>
+            <div class="header-actions">
+                <button class="theme-toggle" id="themeToggle">🌙 Dark</button>
+            </div>
+        </header>
+        <main>
+            <div class="hero">
+                <h2>🚀 Welcome</h2>
+                <p>Your hub for tech guides, tools & tips</p>
+                <div class="search-box"><input type="text" id="searchInput" placeholder="Search tutorials..." /></div>
+            </div>
+            <div class="options-grid" id="optionsGrid">
+                <div class="option-card"><a href="unlock-mkopa-phones.html"><div class="icon">📱</div><h3>Unlock Mkopa phones</h3><p>Step‑by‑step guides</p><span class="badge">Popular</span></a></div>
+                <div class="option-card"><a href="bot.html"><div class="icon">🤖</div><h3>WhatsApp bot</h3><p>Build your own bot</p><span class="badge">Coming soon</span></a></div>
+                <div class="option-card"><a href="VPNs_wifi.html"><div class="icon">🌐</div><h3>VPNs & bypass</h3><p>Access freely</p><span class="badge">Coming soon</span></a></div>
+                <div class="option-card"><a href="#"><div class="icon">✨</div><h3>More coming</h3><p>Stay tuned!</p><span class="badge coming">In dev</span></a></div>
+            </div>
+            <div class="community">
+                <h3>👥 Join our community</h3>
+                <p>Connect with fellow tech enthusiasts</p>
+                <div class="newsletter">
+                    <input type="email" placeholder="Enter email for updates" />
+                    <button>Subscribe</button>
+                </div>
+                <p style="margin-top:12px; font-size:12px; color:var(--muted);">(Newsletter mockup – connect later)</p>
+            </div>
+        </main>
+        <footer>&copy; 2025-2026 created by <strong>SYMOH TECHN</strong> &nbsp;|&nbsp; All rights reserved</footer>
+    </div>
+    <script>
+        // Theme
+        const themeToggle = document.getElementById('themeToggle');
+        if (localStorage.getItem('theme') === 'light') document.body.classList.add('light');
+        themeToggle.textContent = document.body.classList.contains('light') ? '☀️ Light' : '🌙 Dark';
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light');
+            const isLight = document.body.classList.contains('light');
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+            themeToggle.textContent = isLight ? '☀️ Light' : '🌙 Dark';
+        });
+
+        // Search
+        document.getElementById('searchInput').addEventListener('input', e => {
+            const q = e.target.value.toLowerCase();
+            document.querySelectorAll('.option-card').forEach(card => {
+                const text = card.innerText.toLowerCase();
+                card.style.display = text.includes(q) ? '' : 'none';
+            });
+        });
+
+        // Service Worker
+        if ('serviceWorker' in navigator) navigator.serviceWorker.register('service-worker.js');
+    </script>
+</body>
+</html>

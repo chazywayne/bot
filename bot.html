@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="manifest.json" />
+    <title>WhatsApp Bot – TECH TUTORIALS</title>
+    <style>
+        :root { --bg: #0b0e14; --surface: #141c26; --text: #e8edf5; --muted: #8899aa; --border: #1f2a36; }
+        body.light { --bg: #f5f7fa; --surface: #ffffff; --text: #1a1f2b; --muted: #5a6a7a; --border: #d1d9e6; }
+        * { margin:0; padding:0; box-sizing:border-box; transition: background 0.3s, color 0.3s, border 0.3s; }
+        body { font-family:'Segoe UI',sans-serif; background:var(--bg); color:var(--text); display:flex; flex-direction:column; min-height:100vh; }
+        .container { max-width:1100px; margin:0 auto; padding:0 20px; flex:1; display:flex; flex-direction:column; }
+        header { padding:20px 0; border-bottom:1px solid var(--border); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+        .logo h1 { font-size:26px; font-weight:700; background:linear-gradient(135deg,#00c9ff,#92fe9d); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .logo span { font-size:13px; color:var(--muted); display:block; }
+        .theme-toggle { background:var(--surface); border:1px solid var(--border); color:var(--text); padding:6px 14px; border-radius:8px; cursor:pointer; }
+        .back-link { color:#00c9ff; padding:8px 16px; border:1px solid var(--border); border-radius:8px; }
+        .breadcrumbs { font-size:14px; color:var(--muted); padding:10px 0; }
+        .breadcrumbs span { color:var(--text); }
+        .hero { text-align:center; padding:40px 0 20px; }
+        .hero h2 { font-size:32px; font-weight:600; }
+        .coming-soon-box { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:40px; text-align:center; max-width:600px; margin:0 auto 30px; }
+        .coming-soon-box .icon { font-size:64px; }
+        footer { border-top:1px solid var(--border); padding:20px 0; margin-top:20px; text-align:center; color:var(--muted); font-size:14px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo"><h1>⚡ TECH TUTORIALS</h1><span>Learn • Build • Master</span></div>
+            <div class="header-actions"><button class="theme-toggle" id="themeToggle">🌙 Dark</button><a href="index.html" class="back-link">← Home</a></div>
+        </header>
+        <div class="breadcrumbs">Home &gt; <span>WhatsApp Bot</span></div>
+        <main>
+            <div class="hero"><h2>🤖 WhatsApp Bot</h2><p>Build your own bot from scratch</p></div>
+            <div class="coming-soon-box"><div class="icon">🚧</div><h3>Page Under Construction</h3><p>Comprehensive guide coming soon!</p></div>
+        </main>
+        <footer>&copy; 2025-2026 created by <strong>SYMOH TECHN</strong> &nbsp;|&nbsp; All rights reserved</footer>
+    </div>
+    <script>
+        const t = document.getElementById('themeToggle');
+        if (localStorage.getItem('theme') === 'light') document.body.classList.add('light');
+        t.textContent = document.body.classList.contains('light') ? '☀️ Light' : '🌙 Dark';
+        t.addEventListener('click', () => {
+            document.body.classList.toggle('light');
+            localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+            t.textContent = document.body.classList.contains('light') ? '☀️ Light' : '🌙 Dark';
+        });
+        if ('serviceWorker' in navigator) navigator.serviceWorker.register('service-worker.js');
+    </script>
+</body>
+</html>
